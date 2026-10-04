@@ -31,9 +31,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # submodules: true
-          # If using the 'assets' git submodule from Chirpy Starter, uncomment above
-          # (See: https://github.com/cotes2020/chirpy-starter/tree/main/assets)
+          # Chirpy Starter stores its local JS/CSS and favicon assets in this submodule.
+          submodules: true
 
       - name: Setup Pages
         id: pages
@@ -52,7 +51,10 @@ jobs:
 
       - name: Test site
         run: |
-          bundle exec htmlproofer _site \
+          # `configure-pages` may supply a base path. Check the directory that
+          # was actually built, otherwise root-relative links are resolved from
+          # the wrong `_site` directory and reported as missing.
+          bundle exec htmlproofer "_site${{ steps.pages.outputs.base_path }}" \
             \-\-disable-external \
             \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 

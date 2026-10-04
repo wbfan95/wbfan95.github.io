@@ -1,6 +1,7 @@
 .history
 .github
 .devcontainer
+.vscode
 
 # Bundler cache
 .bundle
