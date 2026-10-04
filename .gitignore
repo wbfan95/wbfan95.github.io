@@ -1,3 +1,7 @@
+.history
+.github
+.devcontainer
+
 # Bundler cache
 .bundle
 vendor
